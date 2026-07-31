@@ -5,9 +5,40 @@ Nouvelle tâche - MYDO list
 {% endblock %}
 
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Enregistrer</button>
-</form>
+    {# La grande carte blanche centrée, comme sur la maquette #}
+    <div class="form-card">
+
+        <h1 class="form-title">{% if form.instance.pk %}Modifier la tâche{% else %}Nouvelle tâche{% endif %}</h1>
+        <p class="form-subtitle">{% if form.instance.pk%}Mets à jour les informations puis enregistre.{% else %}Remplis les informations ci-dessous.{% endif %}</p>
+
+        <form method="POST" class="task-form">
+            {% csrf_token %}
+
+            {# Champ Titre #}
+            <div class="form-group">
+                {# for="..." relie le label au bon champ : cliquer sur le texte "Titre" met le curseur dans le champ #}
+                <label for="{{ form.title.id_for_label }}">Titre</label>
+                {{ form.title }}
+            </div>
+
+            {# Champ Description #}
+            <div class="form-group">
+                <label for="{{ form.description.id_for_label }}">Description</label>
+                {{ form.description }}
+            </div>
+
+            {# Champ Date d'échéance #}
+            <div class="form-group">
+                <label for="{{ form.due_date.id_for_label }}">Date d'échéance</label>
+                {{ form.due_date }}
+            </div>
+
+            {# Boutons Enregistrer / Annuler #}
+            <div class="form-actions">
+                <button type="submit" class="btn-save">Enregistrer</button>
+                <a href="{% url 'task_list' %}" class="btn-cancel">Annuler</a>
+            </div>
+        </form>
+
+    </div>
 {% endblock %}

@@ -432,6 +432,17 @@ input{
         justify-content: space-between;
         padding-left: 32px; /* aligne avec le texte, sous la checkbox */
     }
+
+    /* La carte de formulaire prend presque toute la largeur de l'écran,
+       avec moins de marge/padding pour ne pas gâcher l'espace disponible */
+    .form-card{
+        margin: 20px auto;
+        padding: var(--spacing-md);
+    }
+
+    .form-title{
+        font-size: 1.25rem;
+    }
 }
 
 @media (max-width: 480px){
@@ -452,4 +463,123 @@ input{
     .task-actions{
         padding-left: 0;
     }
+
+    .form-actions{
+        flex-direction: column;
+    }
+
+    .btn-save,
+    .btn-cancel{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ==========================
+   FORMULAIRE (.form-card)
+========================== */
+
+/* La grande carte blanche centrée qui contient tout le formulaire */
+.form-card{
+    max-width: 560px;
+    margin: 40px auto;      /* centre horizontalement la carte dans la page */
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--spacing-lg);
+}
+
+.form-title{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 6px;
+}
+
+.form-subtitle{
+    color: var(--text-secondary);
+    font-size: .9rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Un groupe = un label + son champ, empilés verticalement */
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label{
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Style commun aux champs texte et à la zone de texte */
+.form-input,
+.form-textarea{
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--card-color);
+    color: var(--text-color);
+    font-size: .9rem;
+    outline: none;
+    transition: .2s;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder{
+    color: var(--text-light);
+}
+
+/* Effet visuel quand l'utilisateur clique dans un champ */
+.form-input:focus,
+.form-textarea:focus{
+    border-color: var(--primary-color);
+}
+
+.form-textarea{
+    resize: vertical;   /* autorise à agrandir la hauteur, pas la largeur */
+    min-height: 100px;
+}
+
+/* Ligne des boutons Enregistrer / Annuler */
+.form-actions{
+    display: flex;
+    gap: 12px;
+    margin-top: var(--spacing-md);
+}
+
+.btn-save{
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    font-size: .9rem;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.btn-save:hover{
+    background-color: var(--primary-text);
+}
+
+.btn-cancel{
+    padding: 12px 24px;
+    background-color: var(--primary-light);
+    color: var(--primary-text);
+    border-radius: var(--radius-sm);
+    font-size: .9rem;
+    font-weight: 600;
+    text-align: center;
+    transition: .2s;
+}
+
+.btn-cancel:hover{
+    background-color: var(--border-color);
 }
