@@ -1,0 +1,17 @@
+{% extends "tasks/base.html" %}
+
+{% block title%}
+Détail de la tâche - MYDO list
+{% endblock %}
+
+{% block content %}
+<h2>{{task.title}}</h2>
+<p><strong>Description :</strong> {{task.description}}</p>
+<p><strong>Date de création :</strong> {{task.created_date}}</p>
+<p><strong>Date d'échéance :</strong> {{task.due_date}}</p>
+<p><strong>Date terminée :</strong> {{task.completed_date}}</p>
+<p><strong>Terminé :</strong> {{task.completed}}</p>
+<a href="{% url 'task_update' task.id %}">Modifier</a>
+<a href="{% url 'task_delete' task.id %}">Supprimer</a>
+<a href="{% url 'task_list' %}">Retour à la liste</a>   
+{% endblock %}

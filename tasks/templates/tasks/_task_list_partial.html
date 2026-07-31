@@ -1,0 +1,39 @@
+{% for task in tasks %}
+    <div class="task-card">
+        <div class="task-checkbox">
+            {# On ne construit plus l'URL en JS : Django la génère ici,peu importe le préfixe défini dans le urls.py du projet #}
+            <input type="checkbox"
+                   data-task-id="{{ task.id }}"
+                   data-toggle-url="{% url 'task_toggle' task.id %}"
+                   {% if task.completed %}checked{% endif %}>
+        </div>
+
+        <div class="task-content">
+            <a href="{% url 'task_detail' task.id %}" class="task-title">{{ task.title }}</a>
+            <p class="task-date">Échéance : {{ task.due_date }}</p>
+        </div>
+
+        <div class="task-actions">
+            <div class="task-status">
+                {% if task.status == "completed" %}
+                    <span class="badge completed">Terminée</span>
+                {% elif task.status == "late" %}
+                    <span class="badge late">En retard</span>
+                {% else %}
+                    <span class="badge todo">À faire</span>
+                {% endif %}
+            </div>
+
+            <div class="action-buttons">
+                <a href="{% url 'task_update' task.id %}" title="Modifier" class="edit-btn"><ion-icon name="pencil-sharp"></ion-icon></a>
+                <a href="{% url 'task_delete' task.id %}" title="Supprimer" class="delete-btn"><ion-icon name="trash-sharp"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    {% if search %}
+        <p class="empty-state">Aucune tâche ne correspond à « {{ search }} ».</p>
+    {% else %}
+        <p class="empty-state">Aucune tâche pour le moment.</p>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,35 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}
+    Mes tâches - MYDO list
+{% endblock %}
+
+{% block content %}
+    {# Jeton CSRF caché, réutilisé par script.js pour les requêtes POST en AJAX #}
+    {% csrf_token %}
+
+    <div class="page-header">
+        <div class="logo">
+            <h1>MYDO list</h1>
+        </div>
+        <a href="{% url 'create_task' %}" class="btn-add">+ Nouvelle tâche</a>
+    </div>
+
+    <div class="search-container">
+        <form method="GET" class="search-form" id="search-form">
+            <span class="search-icon"><ion-icon name="search-sharp"></ion-icon></span>
+            <input type="text" name="search" id="search-input" class="search-input" placeholder="Rechercher une tâche par titre ou description..." value="{{ search }}" autocomplete="off">
+        </form>
+    </div>
+
+    <div class="filters">
+        <button type="button" class="filter {% if status == '' %}active{% endif %}" data-status="">Toutes (<span id="count-all">{{ all_count }}</span>)</button>
+        <button type="button" class="filter {% if status == 'todo' %}active{% endif %}" data-status="todo">À faire (<span id="count-todo">{{ todo_count }}</span>)</button>
+        <button type="button" class="filter {% if status == 'completed' %}active{% endif %}" data-status="completed">Terminées (<span id="count-completed">{{ completed_count }}</span>)</button>
+    </div>
+
+    <div class="task-list" id="task-list">
+        {% include "tasks/_task_list_partial.html" %}
+    </div>
+{% endblock %}
+

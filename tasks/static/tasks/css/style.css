@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+ion-icon{
+    color: inherit;
+    font-size: 18px;
+}
+
+/* ==========================
+   VARIABLES
+========================== */
+
+:root{
+
+    /* Couleurs principales */
+
+    --primary-color: #4F46E5;
+    --primary-light: #EEF2FF;
+    --primary-text: #4338CA;
+
+    --success-color: #14B8A6;
+    --success-light: #ECFDF5;
+    --success-text: #047857;
+
+    --danger-color: #EF4444;
+    --danger-light: #FEF2F2;
+    --danger-text: #B91C1C;
+
+    /* Couleurs générales */
+
+    --background-color: #F8FAFC;
+    --card-color: #FFFFFF;
+    --border-color: #E2E8F0;
+
+    --text-color: #1E293B;
+    --text-secondary: #64748B;
+    --text-light: #94A3B8;
+
+    /* Espacements */
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+
+    /* Bordures */
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+
+    /* Ombres */
+
+    --shadow: 0 1px 3px rgba(15, 23, 42, .06);
+
+}
+
+/* ==========================
+   STYLES GLOBAUX
+========================== */
+
+body{
+    font-family: 'Inter', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+button{
+    cursor: pointer;
+    font: inherit;
+}
+
+input{
+    font: inherit;
+}
+
+.container{
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ==========================
+   EN-TÊTE (.page-header)
+========================== */
+
+.page-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.logo h1{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.btn-add{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    font-size: .9rem;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.btn-add:hover{
+    background-color: var(--primary-text);
+}
+
+/* ==========================
+   BARRE DE RECHERCHE (.search-container)
+========================== */
+
+.search-container{
+    margin-bottom: var(--spacing-md);
+}
+
+.search-form{
+    position: relative;
+}
+
+.search-icon{
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    display: flex;
+    pointer-events: none;
+}
+
+.search-input{
+    width: 100%;
+    height: 44px;
+    padding-left: 42px;
+    padding-right: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--card-color);
+    color: var(--text-color);
+    font-size: .9rem;
+    outline: none;
+}
+
+.search-input::placeholder{
+    color: var(--text-light);
+}
+
+.search-input:focus{
+    border-color: var(--primary-color);
+}
+
+/* ==========================
+   FILTRES (.filters)
+========================== */
+
+.filters{
+    display: flex;
+    gap: 10px;
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.filter{
+    padding: 6px 16px;
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-size: .85rem;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.filter:hover{
+    background-color: var(--primary-light);
+    color: var(--primary-text);
+}
+
+.filter.active{
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* ==========================
+   LISTE DES TÂCHES (.task-list)
+========================== */
+
+.task-list{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ==========================
+   CARTE D'UNE TÂCHE (.task-card)
+========================== */
+
+.task-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    transition: opacity .2s;
+}
+
+.task-card:has(.task-checkbox input:checked){
+    opacity: .75;
+}
+
+/* --- Case à cocher (.task-checkbox) --- */
+
+.task-checkbox input{
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #CBD5E1;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.task-checkbox input:checked{
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.task-checkbox input:checked::after{
+    content: "\2713";
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* --- Contenu (.task-content) --- */
+
+.task-content{
+    flex: 1;
+    margin-left: 16px;
+}
+
+.task-title{
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.task-title:hover{
+    color: var(--primary-color);
+}
+
+.task-card:has(.task-checkbox input:checked) .task-title{
+    text-decoration: line-through;
+    color: var(--text-light);
+}
+
+.task-date{
+    margin-top: 4px;
+    font-size: .8rem;
+    color: var(--text-secondary);
+}
+
+/* --- Actions à droite (.task-actions) --- */
+
+.task-actions{
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.task-status{
+    min-width: 80px;
+    text-align: center;
+}
+
+/* Badges de statut */
+
+.badge{
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: .75rem;
+    font-weight: 700;
+}
+
+.badge.todo{
+    background-color: var(--primary-light);
+    color: var(--primary-text);
+}
+
+.badge.completed{
+    background-color: var(--success-light);
+    color: var(--success-text);
+}
+
+.badge.late{
+    background-color: var(--danger-light);
+    color: var(--danger-text);
+}
+
+/* Boutons Modifier / Supprimer */
+
+.action-buttons{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.edit-btn,
+.delete-btn{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    transition: .2s;
+}
+
+.edit-btn:hover{
+    background-color: var(--primary-light);
+    color: var(--primary-text);
+}
+
+.delete-btn:hover{
+    background-color: var(--danger-light);
+    color: var(--danger-text);
+}
+
+/* ==========================
+   ÉTAT VIDE (.empty-state)
+========================== */
+
+.empty-state{
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--text-secondary);
+    font-size: .9rem;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 768px){
+
+    .container{
+        margin: 20px auto;
+        padding: 0 16px;
+    }
+
+    .page-header{
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 1.25rem;
+    }
+
+    .logo h1{
+        font-size: 1.35rem;
+    }
+
+    .btn-add{
+        padding: 9px 14px;
+        font-size: .85rem;
+    }
+
+    .filters{
+        gap: 8px;
+        margin-bottom: 1.25rem;
+    }
+
+    .filter{
+        padding: 6px 12px;
+        font-size: .8rem;
+    }
+
+    /* La carte passe en colonne : ligne 1 = case + titre + date,
+       ligne 2 = badge + boutons, alignés à droite */
+    .task-card{
+        flex-wrap: wrap;
+        row-gap: 12px;
+        padding: 14px;
+    }
+
+    .task-content{
+        margin-left: 12px;
+        min-width: 0; /* permet au texte de se tronquer au lieu de déborder */
+    }
+
+    .task-title{
+        font-size: .9rem;
+        word-break: break-word;
+    }
+
+    .task-actions{
+        width: 100%;
+        justify-content: space-between;
+        padding-left: 32px; /* aligne avec le texte, sous la checkbox */
+    }
+}
+
+@media (max-width: 480px){
+
+    .logo h1{
+        font-size: 1.15rem;
+    }
+
+    .search-input{
+        font-size: .85rem;
+        height: 42px;
+    }
+
+    .task-date{
+        font-size: .75rem;
+    }
+
+    .task-actions{
+        padding-left: 0;
+    }
+}
