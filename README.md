@@ -32,6 +32,7 @@ MYDO list a été conçu comme projet d'apprentissage de Django, dans le but de 
 
 ​```bash
 git clone https://github.com/mahachu/MYDO-list.git
+
 cd MYDO-list
 ​```
 
