@@ -30,47 +30,47 @@ MYDO list a été conçu comme projet d'apprentissage de Django, dans le but de 
 
 ### 1. Cloner le projet
 
-​```bash
+```bash
 git clone https://github.com/mahachu/MYDO-list.git
 
 cd MYDO-list
-​```
+```
 
 ### 2. Créer un environnement virtuel
 
-​```bash
+```bash
 python3 -m venv venv
-​```
+```
 
 ### 3. Activer l'environnement
 
 Sur Mac/Linux :
-​```bash
+```bash
 source venv/bin/activate
-​```
+```
 
 Sur Windows :
-​```bash
+```bash
 venv\Scripts\activate
-​```
+```
 
 ### 4. Installer les dépendances
 
-​```bash
+```bash
 pip install -r requirements.txt
-​```
+```
 
 ### 5. Appliquer les migrations
 
-​```bash
+```bash
 python manage.py migrate
-​```
+```
 
 ### 6. Lancer le serveur
 
-​```bash
+```bash
 python manage.py runserver
-​```
+```
 
 ### 7. Ouvrir l'application
 
