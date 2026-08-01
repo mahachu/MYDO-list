@@ -1,17 +1,63 @@
 {% extends "tasks/base.html" %}
 
-{% block title%}
+{% block title %}
 Détail de la tâche - MYDO list
 {% endblock %}
 
 {% block content %}
-<h2>{{task.title}}</h2>
-<p><strong>Description :</strong> {{task.description}}</p>
-<p><strong>Date de création :</strong> {{task.created_date}}</p>
-<p><strong>Date d'échéance :</strong> {{task.due_date}}</p>
-<p><strong>Date terminée :</strong> {{task.completed_date}}</p>
-<p><strong>Terminé :</strong> {{task.completed}}</p>
-<a href="{% url 'task_update' task.id %}">Modifier</a>
-<a href="{% url 'task_delete' task.id %}">Supprimer</a>
-<a href="{% url 'task_list' %}">Retour à la liste</a>   
+
+    <a href="{% url 'task_list' %}" class="back-link">
+        <ion-icon name="arrow-back-outline"></ion-icon> Retour à la liste
+    </a>
+
+    <div class="detail-card">
+
+        {# Badge de statut, réutilise les mêmes classes que sur la liste des tâches #}
+        {% if task.status == "completed" %}
+            <span class="badge completed">Terminée</span>
+        {% elif task.status == "late" %}
+            <span class="badge late">En retard</span>
+        {% else %}
+            <span class="badge todo">À faire</span>
+        {% endif %}
+
+        <h1 class="detail-title">{{ task.title }}</h1>
+
+        <hr class="detail-divider">
+
+        {# Section description #}
+        <div class="detail-section">
+            <p class="detail-label">Description</p>
+            <p class="detail-text">{{ task.description }}</p>
+        </div>
+
+        <hr class="detail-divider">
+
+        {# Les 3 dates, côte à côte #}
+        <div class="detail-dates">
+            <div class="detail-date-item">
+                <p class="detail-label">Date d'échéance</p>
+                <p class="detail-value">{{ task.due_date }}</p>
+            </div>
+            <div class="detail-date-item">
+                <p class="detail-label">Créée le</p>
+                <p class="detail-value">{{ task.created_date }}</p>
+            </div>
+            <div class="detail-date-item">
+                <p class="detail-label">Terminée le</p>
+                {# Si la tâche n'est pas encore terminée, completed_date vaut None : on affiche un tiret à la place #}
+                <p class="detail-value">{% if task.completed_date %}{{ task.completed_date }}{% else %}—{% endif %}</p>
+            </div>
+        </div>
+
+        {# Boutons d'action #}
+        <div class="detail-actions">
+            <a href="{% url 'task_update' task.id %}" class="btn-save">
+                <ion-icon name="pencil-outline"></ion-icon> Modifier
+            </a>
+            <a href="{% url 'task_delete' task.id %}" class="btn-delete">Supprimer</a>
+        </div>
+
+    </div>
+
 {% endblock %}

@@ -443,6 +443,14 @@ input{
     .form-title{
         font-size: 1.25rem;
     }
+
+    .detail-card{
+        padding: var(--spacing-md);
+    }
+
+    .detail-title{
+        font-size: 1.25rem;
+    }
 }
 
 @media (max-width: 480px){
@@ -472,6 +480,15 @@ input{
     .btn-cancel{
         width: 100%;
         text-align: center;
+    }
+
+    .detail-dates{
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .detail-actions{
+        flex-direction: column;
     }
 }
 
@@ -582,4 +599,121 @@ input{
 
 .btn-cancel:hover{
     background-color: var(--border-color);
+}
+
+
+/* ==========================
+   DÉTAIL D'UNE TÂCHE (.detail-card)
+========================== */
+
+/* Lien "Retour à la liste", au-dessus de la carte */
+.back-link{
+    display: flex;              
+    align-items: center;
+    gap: 6px;
+    max-width: 560px;           /* même largeur max que .detail-card */
+    margin: 0 auto var(--spacing-md) auto;  
+    color: var(--text-secondary);
+    font-size: .85rem;
+    font-weight: 600;
+    transition: .2s;
+}
+.back-link:hover{
+    color: var(--primary-text);
+}
+
+/* La grande carte blanche, même principe que .form-card */
+.detail-card{
+    max-width: 560px;
+    margin: 0 auto;
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--spacing-lg);
+}
+
+.detail-title{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Ligne de séparation fine entre les sections */
+.detail-divider{
+    border: none;                        /* on annule la bordure par défaut du <hr> */
+    border-top: 1px solid var(--border-color);  /* puis on en redessine une seule, en haut */
+    margin: var(--spacing-md) 0;
+}
+
+.detail-section{
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Petit texte gris au-dessus de chaque information (ex: "Description", "Créée le") */
+.detail-label{
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.detail-text{
+    color: var(--text-color);
+    font-size: .9rem;
+    line-height: 1.6;
+}
+
+/* Les 3 dates, alignées côte à côte */
+.detail-dates{
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.detail-date-item{
+    flex: 1;   /* chaque date prend la même largeur, se partagent l'espace à égalité */
+}
+
+.detail-value{
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* Ligne des boutons Modifier / Supprimer */
+.detail-actions{
+    display: flex;
+    gap: 12px;
+}
+
+.detail-actions .btn-save{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-delete{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: var(--danger-light);
+    color: var(--danger-text);
+    border-radius: var(--radius-sm);
+    font-size: .9rem;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.btn-delete:hover{
+    background-color: var(--danger-color);
+    color: #fff;
 }
