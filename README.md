@@ -3,7 +3,7 @@
 ### 1. Cloner le projet
 
 ```bash
-git clone ...
+git clone
 ```
 
 ### 2. Créer un environnement virtuel

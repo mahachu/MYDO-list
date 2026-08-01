@@ -107,11 +107,20 @@ input{
     margin-bottom: var(--spacing-md);
 }
 
+.logo a{
+    display: inline-block;
+    transition: .2s;
+}
+
 .logo h1{
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--text-color);
+}
+
+.logo a:hover h1{
+    color: var(--primary-color);
 }
 
 .btn-add{
