@@ -1,15 +1,36 @@
 {% extends "tasks/base.html" %}
 
-{% block title%}
-Suppression de la tâche - MYDO lis
+{% block title %}
+Suppression de la tâche - MYDO list
 {% endblock %}
 
 {% block content %}
-<h2>Supprimer une tâche</h2>
-<p>Êtes-vous sûr de vouloir supprimer la tâche <strong>{{ task.title }}</strong> ?</p>
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Supprimer</button>
-</form>
-<a href="{% url 'task_detail' task.id %}">Annuler</a>
+
+    <div class="delete-page">
+
+        <div class="detail-card delete-card">
+
+            <div class="delete-icon">
+                <ion-icon name="trash-sharp"></ion-icon>
+            </div>
+
+            <h1 class="detail-title">Supprimer cette tâche ?</h1>
+
+            <p class="detail-text">
+                « {{ task.title }} » sera définitivement supprimée. Cette action est irréversible.
+            </p>
+
+            <div class="delete-actions">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-delete-confirm">Supprimer</button>
+                </form>
+
+                <a href="{% url 'task_detail' task.id %}" class="btn-cancel">Annuler</a>
+            </div>
+
+        </div>
+
+    </div>
+
 {% endblock %}

@@ -433,8 +433,6 @@ input{
         padding-left: 32px; /* aligne avec le texte, sous la checkbox */
     }
 
-    /* La carte de formulaire prend presque toute la largeur de l'écran,
-       avec moins de marge/padding pour ne pas gâcher l'espace disponible */
     .form-card{
         margin: 20px auto;
         padding: var(--spacing-md);
@@ -450,6 +448,10 @@ input{
 
     .detail-title{
         font-size: 1.25rem;
+    }
+
+    .delete-page{
+        min-height: calc(100vh - 40px);
     }
 }
 
@@ -490,6 +492,23 @@ input{
     .detail-actions{
         flex-direction: column;
     }
+
+    .delete-actions{
+        flex-direction: column;
+        align-items: stretch;   /* les boutons prennent alors toute la largeur dispo */
+    }
+
+    .delete-actions form{
+        display: block;
+        width: 100%;
+    }
+
+    .btn-delete-confirm,
+    .delete-actions .btn-cancel{
+        width: 100%;
+        text-align: center;
+    }
+
 }
 
 /* ==========================
@@ -665,6 +684,8 @@ input{
     color: var(--text-color);
     font-size: .9rem;
     line-height: 1.6;
+    overflow-wrap: break-word;   /* force le texte à passer à la ligne, même au milieu d'un mot trop long si nécessaire */
+
 }
 
 /* Les 3 dates, alignées côte à côte */
@@ -716,4 +737,65 @@ input{
 .btn-delete:hover{
     background-color: var(--danger-color);
     color: #fff;
+}
+
+/* ==========================
+   CONFIRMATION DE SUPPRESSION
+========================== */
+
+
+
+.delete-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 80px);  /* remplace 80px par la vraie hauteur de ton header */
+}
+
+.delete-icon{
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--danger-light);
+    color: var(--danger-color);
+    border-radius: 50%;
+    font-size: 1.6rem;
+}
+
+.delete-card .detail-title{
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+}
+
+.delete-card .detail-text{
+    margin-bottom: var(--spacing-md);
+}
+
+
+.delete-actions{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Le <form> ne doit occuper QUE la largeur de son bouton, pas plus */
+.delete-actions form{
+    display: inline-block;
+}
+
+.btn-delete-confirm{
+    padding: 12px 24px;
+    background-color: var(--danger-color);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    font-size: .9rem;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.btn-delete-confirm:hover{
+    background-color: var(--danger-text);
 }
